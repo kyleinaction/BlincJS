@@ -29,7 +29,7 @@
 
         appCore.startModule("module1");
 
-        assert.ok(isStarted === true, "testStart: did not start module");
+        assert.ok(isStarted === true, "testStart: expecting module to start. Module started: " + (isStarted ? "true" : "false"));
     });
 
     /**
@@ -61,7 +61,7 @@
 
         appCore.startAll();
 
-        assert.ok(numStarted === 3, "testStartAll: only started " + numStarted + " modules.");
+        assert.ok(numStarted === 3, "testStartAll: expecting 3 modules to start. " + numStarted + " modules started.");
     });
 
     /**
@@ -79,7 +79,7 @@
         appCore.startModule("module1");
         appCore.stopModule("module1");
 
-        assert.ok(isStarted === false, "testStop: Module was not stopped.");
+        assert.ok(isStarted === false, "testStop: expecting module to stop. Module stopped: " + (isStarted === false ? "true" : "false"));
     });
 
     /**
@@ -106,7 +106,7 @@
         appCore.startAll();
         appCore.stopAll();
 
-        assert.ok(numStopped === 3, "testStopAll: only stopped " + numStopped + " modules.");
+        assert.ok(numStopped === 3, "testStopAll: expecting 3 stopped modules. " + numStopped + " modules stopped.");
     });
 
     QUnit.test("testRestart", function (assert) {
@@ -122,7 +122,7 @@
         appCore.startModule("module1");
         appCore.restartModule("module1");
 
-        assert.ok(timesStarted === 2 && timesStopped === 1, "testRestart: Module was not restarted. Started " + timesStarted + " times, stopped " + timesStopped + "times.");
+        assert.ok(timesStarted === 2 && timesStopped === 1, "testRestart: expecting 2 start module calls and 1 stop module calls. Started " + timesStarted + " times, stopped " + timesStopped + " times.");
     });
 
     QUnit.test("testRestartAll", function (assert) {
@@ -150,7 +150,7 @@
         appCore.startAll();
         appCore.restartAll();
 
-        assert.ok(numStarted === 6 && numStopped === 3, "testRestartAll: Did not restart all modules. Started " + numStarted + ", stopped " + numStopped + ".");
+        assert.ok(numStarted === 6 && numStopped === 3, "testRestartAll: expecting 6 start module calls and 3 stop module calls. Started " + numStarted + " times, stopped " + numStopped + " times.");
     });
 
 })();

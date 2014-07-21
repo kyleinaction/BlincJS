@@ -33,8 +33,8 @@
             tmp:    "a"
         });
 
-        assert.ok(triggered === true,      "testSubscribeAndPublish: callback not triggered.");
-        assert.ok(paramsPresent === true,  "testSubscribeAndPublish: parameters not passed.");
+        assert.ok(triggered === true,      "testSubscribeAndPublish: expecting callback to be triggered. Triggered: " + (triggered === true ? "true" : "false"));
+        assert.ok(paramsPresent === true,  "testSubscribeAndPublish: expecting parameters to be passed. Passed: " + (paramsPresent === true ? "true" : "false"));
     });
 
     /**
@@ -53,7 +53,7 @@
         mediator.publish("testChannel", {});
         mediator.unsubscribe(myFunction);
         mediator.publish("testChannel", {});
-        assert.ok(timesCalled === 1, "testUnsubscribe: Unsubscribe with function did not work. Called " + timesCalled + " times.");
+        assert.ok(timesCalled === 1, "testUnsubscribeWithFunction: expecting callback to be called 1 time. Called " + timesCalled + " times.");
         timesCalled = 0;
 
         // Test removing by function from channel
@@ -61,7 +61,7 @@
         mediator.publish("testChannel", {});
         mediator.unsubscribe("testChannel", myFunction);
         mediator.publish("testChannel", {});
-        assert.ok(timesCalled === 1, "testUnsubscribe: Unsubscribe with channel and function did not work. Called " + timesCalled + " times.");
+        assert.ok(timesCalled === 1, "testUnsubscribeWithChannelAndFunction: expecting callback to be called 1 time. Called " + timesCalled + " times.");
         timesCalled = 0;
 
         // Test removing as array
@@ -71,7 +71,7 @@
         myArray.push(myFunction);
         mediator.unsubscribe(myArray);
         mediator.publish("testChannel", {});
-        assert.ok(timesCalled === 1, "testUnsubscribe: Unsubscribe with [Function] did not work. Called " + timesCalled + " times.");
+        assert.ok(timesCalled === 1, "testUnsubscribeWithArrayOfFunctions: expecting callback to be called 1 time. Called " + timesCalled + " times.");
         timesCalled = 0;
 
         // Test removing as array from channel
@@ -81,7 +81,7 @@
         myArray2.push(myFunction);
         mediator.unsubscribe("testChannel", myArray2);
         mediator.publish("testChannel", {});
-        assert.ok(timesCalled === 1, "testUnsubscribe: Unsubscribe with channel and [Function] did not work. Called " + timesCalled + " times.");
+        assert.ok(timesCalled === 1, "testUnsubscribeWithChannelAndFunction: expecting callback to be called 1 time. Called " + timesCalled + " times.");
         timesCalled = 0;
 
         // Test removing object
@@ -92,7 +92,7 @@
         };
         mediator.unsubscribe(myObject);
         mediator.publish("testChannel", {});
-        assert.ok(timesCalled === 1, "testUnsubscribe: Unsubscribe with {'channel': Function]} did not work. Called " + timesCalled + " times.");
+        assert.ok(timesCalled === 1, "testUnsubscribeWithObject: expecting callback to be called 1 time. Called " + timesCalled + " times.");
         timesCalled = 0;
     });
 
